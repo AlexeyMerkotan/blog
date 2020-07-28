@@ -23,3 +23,18 @@ use yii\widgets\DetailView;
     ]) ?>
 
 </div>
+<table class="table">
+    <thead>
+    <tr>
+        <th><?=Yii::t('app', 'Article')?></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($model->articles as $article):?>
+        <tr>
+            <td><?=Html::a($article->title, ['/article/view', 'id' => $article->id], [])?></td>
+        </tr>
+    <?php endforeach;?>
+    </tbody>
+</table>
+
