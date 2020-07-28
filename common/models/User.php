@@ -255,11 +255,9 @@ class User extends ActiveRecord implements IdentityInterface
     {
         parent::afterSave($insert, $changedAttributes);
 
-        $time = new \DateTime('now');
-
-        $image = UploadedFile::getInstance($this, 'image');
-        if (!empty($image)) {
-            Yii::$app->storage->saveGallery($image, $this);
+        $this->image = UploadedFile::getInstance($this, 'image');
+        if (!empty($this->image)) {
+            $this->image->saveAs('storage/images/' . $this->image->baseName . '.' . $this->image->extension);
         }
 
         return true;

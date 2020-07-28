@@ -78,10 +78,10 @@ class SiteController extends Controller
     {
         $queryParams = \Yii::$app->request->queryParams;
         $articleModel = new Article();
-        $this->articles = $articleModel->getArticleItems($queryParams)->query->all();
+        $dataProvider = $articleModel->getArticleItems($queryParams);
 
         return $this->render('index', [
-            'articles' => $this->articles
+            'dataProvider' => $dataProvider
         ]);
     }
 

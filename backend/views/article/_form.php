@@ -38,8 +38,7 @@ use backend\models\category\Category;
         <?=
         Select2::widget([
             'name' => 'Article[tags]',
-            'value' => ArrayHelper::map($articleTags, 'name', 'id'),
-            'data' => ArticleTag::getAll(),
+            'value' => ArrayHelper::map($articleTags, 'name', 'name'),
             'options' => [
                 'placeholder' => 'Select skill',
                 'multiple' => true,
@@ -81,9 +80,9 @@ use backend\models\category\Category;
 
     <?php if (!$model->isNewRecord):?>
 
-    <?= $form->field($model, 'created_at')->textInput(['disabled' => true]) ?>
+    <?= $form->field($model, 'created')->textInput(['disabled' => true]) ?>
 
-    <?= $form->field($model, 'updated_at')->textInput(['disabled' => true]) ?>
+    <?= $form->field($model, 'updated')->textInput(['disabled' => true]) ?>
 
     <?php endif;?>
 

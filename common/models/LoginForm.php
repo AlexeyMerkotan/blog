@@ -13,6 +13,8 @@ class LoginForm extends Model
     public $password;
     public $rememberMe = true;
 
+    public $_user;
+
     /**
      * {@inheritdoc}
      */

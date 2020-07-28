@@ -1,27 +1,33 @@
 <?php
 
 use common\components\ShortText;
+use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use backend\models\article\frontend\Article;
 use yii\bootstrap\ActiveForm;
+use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
-/** @var $articles \backend\models\article\Article[] */
+/** @var $dataProvider ActiveDataProvider*/
 
 $this->title = 'My Yii Application';
 ?>
 <?= Html::a(Yii::t('app', 'Create article'), ['/article/create'], ['class' => 'btn btn-primary'])?>
 <hr>
-<?php $form = \yii\bootstrap\ActiveForm::begin() ?>
+<?php $form = \yii\bootstrap\ActiveForm::begin(['method' => 'get']) ?>
 <div class="form-group">
     <label for="exampleFormControlSelect1"><?= Yii::t('app', 'Type') ?></label>
-    <?= Html::dropDownList('type_post', '', Article::getListPost()) ?>
+    <?= Html::dropDownList('Article[type]', '', Article::getListPost(), ['prompt' =>'Select...',]) ?>
+</div>
+<div class="form-group">
+    <label for="exampleFormControlSelect1"><?= Yii::t('app', 'Tabs') ?></label>
+    <?= Html::dropDownList('Article[tags]', '', \backend\models\article\ArticleTag::getAll(), ['prompt' =>'Select...',]) ?>
 </div>
 <button type="submit" class="btn btn-primary"><?=Yii::t('app', 'Search')?></button>
 <?php ActiveForm::end(); ?>
 <hr>
 <div class="site-index">
-    <?php foreach ($articles as $article):?>
+    <?php foreach ($dataProvider->query->all() as $article):?>
         <div class="row">
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
@@ -62,4 +68,7 @@ $this->title = 'My Yii Application';
             </div>
         </div>
     <?php endforeach;?>
+    <?= LinkPager::widget([
+            'pagination' => $dataProvider->getPagination()
+    ])?>
 </div>

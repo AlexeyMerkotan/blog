@@ -65,6 +65,6 @@ class ArticleTag extends \yii\db\ActiveRecord
      */
     public static function getAll()
     {
-        return self::find()->select(['name', 'id'])->orderBy(['name' => 'SORT_ASC'])->indexBy('id')->column();
+        return self::find()->select(['name'])->orderBy(['name' => 'SORT_ASC'])->indexBy('id')->column();
     }
 }

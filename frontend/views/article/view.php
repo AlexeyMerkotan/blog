@@ -27,14 +27,10 @@ use yii\helpers\Html;
     <hr>
 <?php foreach ($model->comments as $comment): ?>
     <div class="media">
-        <div class="media-left media-middle">
-            <a href="#">
-                <img class="media-object" src="<?=$comment->owner->image ?? ''?>" alt="<?=$comment->owner->username ?? Yii::t('app', 'anonym')?>">
-            </a>
-        </div>
         <div class="media-body">
             <h4 class="media-heading"><?=$comment->owner->username ?? Yii::t('app', 'anonym')?></h4>
             <?=$comment->description?>
         </div>
     </div>
+    <hr>
 <?php endforeach;?>

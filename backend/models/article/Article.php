@@ -107,11 +107,10 @@ class Article extends \yii\db\ActiveRecord
 
         $transaction = Yii::$app->db->beginTransaction();
         try {
-            $oldTags= array_column($this->articleTags, 'article_id');
+            $oldTags = array_column($this->articleTags, 'id');
             $tagsNew = array_diff($this->tags, $oldTags);
             $tagsRem = array_diff($oldTags, $this->tags);
-            ArticleTag::deleteAll(['article_id' => $tagsRem]);
-
+            ArticleTag::deleteAll(['id' => $tagsRem]);
 
             foreach ($tagsNew as $name) {
                 $tags = new ArticleTag([
@@ -127,8 +126,11 @@ class Article extends \yii\db\ActiveRecord
             ArticleCategory::deleteAll(['category_id' => $categoryRem]);
 
             foreach ($categoryNew as $categoryId) {
-                $productCategory = new ArticleCategory(['category_id' => $categoryId]);
-                $productCategory->link('article', $this);
+                $category = new ArticleCategory([
+                    'category_id' => $categoryId,
+                    'article_id' => $this->id
+                ]);
+                $category->save(false);
             }
 
             $transaction->commit();

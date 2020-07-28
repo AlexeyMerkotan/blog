@@ -77,9 +77,9 @@ use backend\models\category\Category;
 
     <?php if (!$model->isNewRecord):?>
 
-        <?= $form->field($model, 'created_at')->textInput(['disabled' => true]) ?>
+        <?= $form->field($model, 'created')->textInput(['disabled' => true]) ?>
 
-        <?= $form->field($model, 'updated_at')->textInput(['disabled' => true]) ?>
+        <?= $form->field($model, 'updated')->textInput(['disabled' => true]) ?>
 
     <?php endif;?>
 
