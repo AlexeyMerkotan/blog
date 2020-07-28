@@ -59,7 +59,7 @@ class SignupForm extends Model
             return null;
         }
         
-        $user = new User();
+        $user = new User(['scenario' => User::SCENARIO_USER]);
         $user->username = $this->username;
         $user->email = $this->email;
         $user->role = Role::ROLE_USER;

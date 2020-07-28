@@ -57,6 +57,8 @@ class ArticleController extends Controller
 
         $model->owner_id = Yii::$app->user->getId();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'The articletest will be added after approval by the admin');
+
             return $this->redirect('/');
         }
 

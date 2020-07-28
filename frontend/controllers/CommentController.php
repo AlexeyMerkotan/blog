@@ -22,6 +22,8 @@ class CommentController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'The comment will be added after approval by the admin');
+
             return $this->redirect(Yii::$app->request->referrer);
         }
 
