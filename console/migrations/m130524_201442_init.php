@@ -41,6 +41,7 @@ class m130524_201442_init extends Migration
             'created_at',
             'updated_at'
         ], [
+            [
             'test',
             'B22bSfGed68nQ7CAvjetcikueAcjuv8p',
             '$2y$13$ulQYX1ZNIDka2xiANldLaeMD72qfockf9a.3tOQMZR0a7Wdkm77/W',
@@ -51,6 +52,7 @@ class m130524_201442_init extends Migration
             1595869719,
             1595869719,
             'P2qX4Pyg1-bpOBf7uU7yUFd0_vY0hteV_1595869719'
+            ]
         ]);
     }
 
